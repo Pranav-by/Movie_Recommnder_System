@@ -3,7 +3,7 @@ services:
     name: movies-recommender-system
     env: python
     buildCommand: "./setup.sh"
-    startCommand: "python -m streamlit run main.py"
+    startCommand: "streamlit run main.py"
     repo: https://github.com/Pranav-by/Movie_Recommnder_System
     branch: main
     rootDir: movies-recommender-system
