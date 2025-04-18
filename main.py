@@ -1,14 +1,20 @@
 import streamlit as st
 import pickle
 import requests
+import os
 
 # Function to fetch poster from TMDb API
 def fetch_poster(movie_id):
+    TMDB_API_KEY = os.getenv("TMDB_API_KEY")
+    if not TMDB_API_KEY:
+        st.error("TMDB_API_KEY is not set. Please add it in Streamlit secrets or environment variables.")
+        return ""
+
     response = requests.get(
-        f'https://api.themoviedb.org/3/movie/{movie_id}?api_key=41030334a3441595b421fea30b4f4791&language=en-US'
+        f'https://api.themoviedb.org/3/movie/{movie_id}?api_key={TMDB_API_KEY}&language=en-US'
     )
     data = response.json()
-    return "https://image.tmdb.org/t/p/w500" + data['poster_path']
+    return "https://image.tmdb.org/t/p/w500" + data.get('poster_path', '')
 
 # Recommender function
 def recommend(movie):
