@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "main.py",  // Replace with your entry point (could be 'main.py', 'server.py', etc.)
+      "use": "@vercel/python"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "main.py"  // Replace with your entry point (could be 'main.py', 'server.py', etc.)
+    }
+  ]
+}
